@@ -1,17 +1,20 @@
 package tests;
 
-import POM.mainPage;
-import POM.orderDetails;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import pageObject.MainPage;
+import pageObject.OrderDetails;
 
 @RunWith(Parameterized.class)
 
-public class testZakaz {
+public class TestZakaz {
     WebDriver webDriver;
     private final String name;
     private final String lastName;
@@ -22,7 +25,7 @@ public class testZakaz {
     private final String comment;
     private final boolean isOrderButton;
 
-    public testZakaz(String name, String lastName, String address, String metroStation, String numberPhone, String time, String comment, boolean isOrderButton) {
+    public TestZakaz(String name, String lastName, String address, String metroStation, String numberPhone, String time, String comment, boolean isOrderButton) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
@@ -43,29 +46,31 @@ public class testZakaz {
         };
     }
 
+    @Before
+    public void setupAll() {
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver","C:\\Users\\KMS\\Documents\\WebDriver\\bin\\geckodriver.exe");
+        webDriver= new FirefoxDriver();
+    }
+
 
     @Test
     public void shouldBeOrderScooterOnButtonPageHeaderWithRequiredFieldTest() {
-        orderDetails orderPage = new orderDetails(webDriver);
-        mainPage mainPage = new mainPage(webDriver);
+        OrderDetails OrderDetails = new OrderDetails(webDriver);
+        MainPage mainPage = new MainPage(webDriver);
         mainPage.open();
         mainPage.clickButtonCookies();
         mainPage.clickOrderButton(isOrderButton);
-        orderPage.enterOrderName(name);
-        orderPage.enterOrderLastName(lastName);
-        orderPage.enterOrderAddress(address);
-        orderPage.enterMetroStation(metroStation);
-        orderPage.clickMetroStationFull();
-        orderPage.enterNumberPhone(numberPhone);
-        orderPage.clickOrderButtonNext();
-        orderPage.enterOrderTime(time);
-        orderPage.clickOrderRentalPeriod();
-        orderPage.enterOrderRentalTwoDay();
-        orderPage.clickCheckBoxGreyColorScooter();
-        orderPage.enterOrderComment(comment);
-        orderPage.clickOrderButtonOnOrderPage();
-        orderPage.clickOrderConfirmationButton();
-        boolean isDisplayed = orderPage.checkOrderConfirmationIsDisplayed();
+        OrderDetails.enterClientDetails(name, lastName, address, metroStation, numberPhone);
+        OrderDetails.enterOrderTime(time);
+        OrderDetails.clickOrderRentalPeriod();
+        OrderDetails.enterOrderRentalTwoDay();
+        OrderDetails.clickCheckBoxGreyColorScooter();
+        OrderDetails.enterOrderComment(comment);
+        OrderDetails.clickOrderButtonOnOrderPage();
+        OrderDetails.clickOrderConfirmationButton();
+        boolean isDisplayed = OrderDetails.checkOrderConfirmationIsDisplayed();
         Assert.assertTrue("Confirmation is not displayed", isDisplayed);
     }
 

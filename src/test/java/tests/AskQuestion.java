@@ -1,13 +1,17 @@
 package tests;
 
-import POM.mainPage;
+import pageObject.MainPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 import static org.junit.Assert.assertEquals;
+
+
 
 @RunWith(Parameterized.class)
 
@@ -37,10 +41,18 @@ public class AskQuestion {
         };
     }
 
+    @Before
+    public void setupAll() {
+//       WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver","C:\\Users\\KMS\\Documents\\WebDriver\\bin\\geckodriver.exe");
+        webDriver= new FirefoxDriver();
+    }
+
 
     @Test
     public void typeDropDownQuestion() {
-        mainPage mainPage = new mainPage(webDriver);
+        MainPage mainPage = new MainPage(webDriver);
         mainPage.open();
         mainPage.clickButtonCookies();
 
