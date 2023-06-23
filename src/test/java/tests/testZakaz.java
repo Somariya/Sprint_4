@@ -1,6 +1,5 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,8 +8,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObject.MainPage;
-import pageObject.OrderDetails;
+import pageobject.MainPage;
+import pageobject.OrderDetails;
 
 @RunWith(Parameterized.class)
 
