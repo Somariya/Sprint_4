@@ -11,7 +11,7 @@ import page.object.MainPage;
 import page.object.OrderDetails;
 @RunWith(Parameterized.class)
 
-public class TestZakaz {
+public class OrderTest {
     WebDriver webDriver;
     private final String name;
     private final String lastName;
@@ -22,7 +22,7 @@ public class TestZakaz {
     private final String comment;
     private final boolean isOrderButton;
 
-    public TestZakaz(String name, String lastName, String address, String metroStation, String numberPhone, String time, String comment, boolean isOrderButton) {
+    public OrderTest(String name, String lastName, String address, String metroStation, String numberPhone, String time, String comment, boolean isOrderButton) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
