@@ -1,6 +1,5 @@
 package tests;
-
-import pageobject.MainPage;
+import page.object.MainPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,9 +8,6 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import static org.junit.Assert.assertEquals;
-
-
-
 @RunWith(Parameterized.class)
 
 public class AskQuestion {

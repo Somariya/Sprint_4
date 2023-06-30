@@ -1,5 +1,4 @@
 package tests;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,9 +7,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageobject.MainPage;
-import pageobject.OrderDetails;
-
+import page.object.MainPage;
+import page.object.OrderDetails;
 @RunWith(Parameterized.class)
 
 public class TestZakaz {
